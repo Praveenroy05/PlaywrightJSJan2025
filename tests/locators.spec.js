@@ -50,8 +50,10 @@
 
 // 2. xpath
 
-//  /
-// //
+//  / - Absolute
+// // - Relative
+
+// In xpath the index will starts from 1
 
 1. //*[@attribute='value']
 //*[@id='userEmail']
@@ -65,8 +67,17 @@
 //div[@class='form-group']/input[@id='userEmail']
 
 4. //label[@for='email']/following-sibling::input[@id='userEmail']
+  //label[@for='username']/following-sibling::input
 
 5. //input[@id='userEmail']/preceding-sibling::label
+
+// <label for="username">Username</label> - precedingsibling to input tag
+// <input type="text" name="username" id="username"> - followingsibling to label tag
+
+
+
+// 6. //h2[text() = 'Test login'] 
+// 7. //h2[contains(text(), 'Test')]
 
 
 
@@ -82,10 +93,15 @@ These are the recommended built-in locators.
 page.getByRole() to locate by explicit and implicit accessibility attributes.
 
 page.getByText() to locate by text content.
+
 page.getByLabel() to locate a form control by associated label's text.
+
 page.getByPlaceholder() to locate an input by placeholder.
+
 page.getByAltText() to locate an element, usually image, by its text alternative.
+
 page.getByTitle() to locate an element by its title attribute.
+
 page.getByTestId() to locate an element based on its data-testid attribute (other attributes can be configured).
 
 
