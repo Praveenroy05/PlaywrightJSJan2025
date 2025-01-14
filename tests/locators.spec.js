@@ -82,7 +82,7 @@
 
 
 
-// Playwright special methods for locators
+// 3. Playwright special methods for locators
 
 // GetBy Locators in Playwright
 
@@ -98,7 +98,7 @@ page.getByLabel() to locate a form control by associated label's text.
 
 page.getByPlaceholder() to locate an input by placeholder.
 
-page.getByAltText() to locate an element, usually image, by its text alternative.
+page.getByAltText() to locate an element, usually image, by its text alternative.(alt as an attribute)
 
 page.getByTitle() to locate an element by its title attribute.
 
