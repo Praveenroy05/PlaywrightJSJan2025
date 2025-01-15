@@ -16,8 +16,8 @@ test('UI Basic validation', async function({page}){
     await page.goto('https://demoqa.com/automation-practice-form')
 // locators(selector) 
 // fill('string')
-await expect(page.getByText('Name')).toBeVisible();
- //await expect(page.locator("#userName-label")).toBeVisible() // label
+ await expect(page.getByText('Name')).toBeVisible();
+ await expect(page.locator("#userName-label")).toBeVisible() // label
  await page.getByPlaceholder('First Name').fill('Test')
  await expect(page.getByPlaceholder('First Name')).toHaveValue('Test')
  await page.getByPlaceholder('Last Name').fill("Testing")
@@ -27,10 +27,21 @@ await expect(page.getByText('Name')).toBeVisible();
  await page.locator("#gender-radio-2").click({force:true})
  await expect(page.locator("#gender-radio-2")).toBeChecked()
  // textContent() - 
+ // allTextContents() - Return the text value from all the matcing elements inside an array
  const femaleTextValue = await page.locator("[for='gender-radio-2']").textContent()
  console.log(femaleTextValue)
-
  await expect(femaleTextValue).toBe('Female')
+ await page.getByPlaceholder('Mobile Number').fill('0000000000')
+ await page.locator(".subjects-auto-complete__value-container").click()
+ await page.locator(".subjects-auto-complete__value-container").pressSequentially('Maths')
+
+ await page.getByText('Maths').nth(3).click()
+ await page.getByLabel('Sports').click({force:true})
+ await expect(page.getByLabel('Sports')).toBeChecked()
+ await page.getByPlaceholder('Current Address').fill("India")
+ await page.locator("#submit").click()
+ await expect(page.locator("#example-modal-sizes-title-lg")).toContainText('Thanks for submitting the form')
+
 
  // Radio/ Checkbox - 
  // click()
