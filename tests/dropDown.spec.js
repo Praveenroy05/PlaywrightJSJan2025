@@ -21,7 +21,6 @@
 
 
 const {test, expect} = require('@playwright/test')
-const { parseEnv } = require('util')
 
 test('drop dwon developed using select tag handling', async function({page}){
 
