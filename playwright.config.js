@@ -32,14 +32,16 @@ module.exports = defineConfig({
     trace: 'on',
     screenshot : 'on',
     video :'on',
-    headless :false,
+    headless :false
   },
 
   /* Configure projects for major browsers */
   projects: [
      {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'],
+        viewport: { width: 800, height: 800 },
+       },
     },
 
     // {

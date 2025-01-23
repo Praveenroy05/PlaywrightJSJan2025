@@ -42,6 +42,8 @@ test('UI Basic validation', async function({page}){
  await page.locator("#submit").click()
  await expect(page.locator("#example-modal-sizes-title-lg")).toContainText('Thanks for submitting the form')
 
+ page.setViewportSize({ width: 1280, height: 720 })
+
 
  // Radio/ Checkbox - 
  // click()

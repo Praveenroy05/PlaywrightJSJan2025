@@ -5,6 +5,7 @@ const url = "https://rahulshettyacademy.com/client"
 const username = "test7lYM@gmail.com"
 const password = "Test@123"
 const productName = "LG Refrigerator"
+const country = ' Singapore'
 
 
 test('End to end product order validation', async ({page})=>{
@@ -35,13 +36,37 @@ test('End to end product order validation', async ({page})=>{
     }
 
    }
+   await expect(page.locator("#toast-container")).toContainText('Product Added To')
 
-   await page.waitForTimeout(5000)
+   await page.locator("[routerlink='/dashboard/cart']").click()
+   await page.getByText('Checkout').click()
+   await expect(page.locator(".user__name label")).toHaveText(username)
+
+   await page.getByPlaceholder('Select Country').pressSequentially("in")
+   await page.locator("section.ta-results").waitFor()
+
+   const dropDownValues = page.locator("section.ta-results button")
+
+   const countryCount  = await dropDownValues.count() //37
+
+  for(let i=0; i<countryCount; i++) {
+    const counutryText = await dropDownValues.nth(i).textContent()
+
+    if(counutryText === country){
+      await dropDownValues.nth(i).click()
+      break;
+    }
+  }
+
+  await page.getByText('Place Order ').click()
+  await expect(page.locator('.hero-primary')).toBeVisible()
+  const orderID = await page.locator("td.em-spacer-1 label").last().textContent()
+  console.log(orderID);
+
+  await page.locator("[routerlink='/dashboard/myorders']").click()
+  await expect(page.locator(".container h1")).toBeVisible()
+
+  
 
 
-
-
-
-
-    
 })
