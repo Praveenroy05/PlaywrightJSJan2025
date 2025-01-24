@@ -1,0 +1,355 @@
+Cypress:
+------------------------------
+
+To create a package.json:
+------------------------------
+mkdir name of project
+cd name of project
+npm -i init
+install cypress in the project - npm install cypress --save-dev
+node_modules/.bin/cypress open
+------------------------------------------------------------------------------------------------------------------
+--> Fixure is a folder to store the test data.
+--> Integrations/examples is the folder to write the test cases.
+--> Plugins folder are kind of listener. Ex:- Set browser on full screen, accept certificate etc can be done in plugins folder.
+--> Support folder can be used for writing customised command or reusuable methods. 
+--> Node_modules will be created when we do "npm install cypress". Node_modules is a heart of Cypress. We cannot work without Node_modules folder in Cypress.
+--> Cypress.config.js will be generated when we open the cypress test runner for the first time. Earlier the name was cypress.json. This is used for the configuration for the cypress framework.
+
+
+-------------------------------------------------------------------------------------------------------------------
+node_module/.bin/cypress open - To open the cypress test runner
+
+-------------------------------------------------------------------------------------------------------------------
+npx cypress run --spec "cypress/integration/specName.js" - To run a single test class.
+
+npx cypress run  - to run the entire test class
+
+-------------------------------------------------------------------------------------------------------------------
+
+LOCATOR STRATEGY IN CYPRESS:
+----------------------------------------
+--> Cypress only support css selectors and can support xpath by installing a plugin cypress-xpath
+
+by id = #idname 			Ex: - #q(for google search)
+
+by classname = .classname 		Ex: - .search-keyword
+	      tagname.classname		Ex: - input.search-button
+
+tagname[attribute='value']		Ex: - input[type='search']
+
+ 
+ Traverse from Parent to child		Ex:- form input (Provide single space to traverse between the tags)
+
+-------------------------------------------------------------------------------------------------------------------
+
+cy.visit("https://rahulshettyacademy.com/seleniumPractise/#/") - visit() is use to launch the url.
+
+-------------------------------------------------------------------------------------------------------------------
+
+cy.get(".product:visible"). Here ".product" is css for className and "visible" is to match only visible elements from the DOM.
+------------------------------------------------------------------------------------------------------------------
+Cypress has an ability to modify the DOM element as there is no middleware called as browser driver as we have 
+in selenium. So Cypress directly interact with the Browser itself.  
+------------------------------------------------------------------------------------------------------------------
+Get and Find command in Cypress:
+---------------------------------
+Get:
+--------
+get method in Cypress is use to find an element in the webpage. It is similar to findElement of Selenium.
+
+Find:
+--------
+find method in Cypress is use to locate the descendant DOM element for the get() method locator.
+------------------------------------------------------------------------------------------------------------------
+eq(index):
+-------------
+eq(index) method in Cypress is use to locate an element at the given index in arrays of locators.
+------------------------------------------------------------------------------------------------------------------
+as():
+
+as method is used to create an alias in Cypress which can be used as a variable and can be re-utilised every time 
+instead of creating same locators every time.
+
+Ex:= 
+
+cy.get('.products').as('productLocator')
+cy.get('@productLocator').click()
+
+------------------------------------------------------------------------------------------------------------------
+contains("value"): - contains is use to search in the DOM matching with the value.
+
+------------------------------------------------------------------------------------------------------------------
+includes() - Is use to find the sub text/ sub string from the string
+
+------------------------------------------------------------------------------------------------------------------
+
+check() - Is use to click on the checkbox
+uncheck()- Is use to uncheck the checkbox
+
+check(['value1','value2']) - check() also accept the arrays of value to click on multiple options at a time.
+
+------------------------------------------------------------------------------------------------------------------
+
+should() - is an assertion in chai library
+
+For behaviour we use 'be' and for property we use 'have' inside should method
+
+should('be.checked')/should('not.be.check')/should('be.disabled') 
+
+- check box should be checked/unchecked/disabled.
+-----------------------------------------------------------------------------------------------------------------
+each(($e1, index, $list) =>{
+}) - is use for interacting through all the element one by one
+
+-----------------------------------------------------------------------------------------------------------------
+Static Drop Down validation: For static drop down the tag name will be select
+
+select("value" or text) - select method is use to select the static drop down element from the drop down
+-----------------------------------------------------------------------------------------------------------------
+
+For Dynamic drop down we have to use click/type and then by using each(($e1, index, $list) =>{}) we can 
+select the element.
+
+-----------------------------------------------------------------------------------------------------------------
+
+cy.on() - Is a method which is use to trigger any event in cypress.
+Ex:- cy.on('window:alert')
+-----------------------------------------------------------------------------------------------------------------
+
+cy.get("").invoke(jQuery function Ex:- "removeAttr", 'target') - Here invoke() takes a jquery function to modify
+element called as "target"
+
+Ex: - invoke("removeAttr", "target") - To remove the target attribute of a DOM element
+      invoke("text") - to get the text value of an element.
+      invoke("show") - to display the hidden element in the dom.
+-----------------------------------------------------------------------------------------------------------------
+
+cy.origin("new domain url", () =>{}) - To change the origin to some other domain
+-----------------------------------------------------------------------------------------------------------------
+
+{force:true} - Is use to apply force operation on the hidden element in cypress.
+
+-----------------------------------------------------------------------------------------------------------------
+Frame handling:
+------------------------
+npm install -D cypress-iframe  - To detect the iframe code using cypress
+
+import 'cypress-iframe' to use in a class
+
+cy.frameLoaded(id or locator) - To identify the frame in cypress and load
+
+cy.iframe() - to switch to iframe mode in cypress. This we will have to write everytime when ever we do any action
+inside the frame.
+
+Ex: - cy.iframe().find("locator").eq(index).click().
+
+-----------------------------------------------------------------------------------------------------------------
+
+cy.url() - is to get the current url of the active window in cypress.
+
+.prop() is a jQuery method that allows to get the href/any property of an element.
+
+-----------------------------------------------------------------------------------------------------------------
+
+expect(true).to.be.true - except is a chai aseertion for validation of text instead of using if block
+
+Ex: - expect(expecText.includes("Success")).to.be.true
+
+except(number/string).to.equal(number/string)
+-----------------------------------------------------------------------------------------------------------------
+
+export default new classname()  - Will make the class available to all the other pages in the framework.
+-----------------------------------------------------------------------------------------------------------------
+
+cy.fixture("path of the data file") - fixture method is to load the data which is available in a file inside
+fixtures folder in the framework
+
+-----------------------------------------------------------------------------------------------------------------
+
+cy.pause() - is to pause the test execution for debugging purpose.
+-----------------------------------------------------------------------------------------------------------------
+:nth-child(n) - is use to identify the nth element out of matching element.
+-----------------------------------------------------------------------------------------------------------------
+npx cypress run --spec testfilename --env url=url - to run the test using terminal and provide the environment 
+url from the terminal
+-----------------------------------------------------------------------------------------------------------------
+
+dataTable.rawTable() - rawTable() is use to convert the data table into 2 dimesnional array in cypress-bdd
+-----------------------------------------------------------------------------------------------------------------
+
+push() 		- push method in javascript is to add an element to the end of an array
+pop() 		- pop method in javascript is to remove the last element from the array
+unshift() 	- unshift method in javascript is to add an element to begining of an array
+indexof(value)  - It is used to provide the index of the value
+includes(value) - It is used to check if the value is available in the array or not
+slice(startIndex, endIndex) - It is used to print the value from startIndex to endIndex-1
+
+-----------------------------------------------------------------------------------------------------------------
+The filter() function returns an iterator where the items are filtered through a function to test if the item is 
+accepted or not.
+
+marks.reduce((sum, mark)=>sum+mark, 0) - to get the sum of all the elements of an array
+---------------------------------------
+marks.filter(score=>score%2==0) - to return the new array with a validation of even number
+----------------------------------
+marks.map(score=>score*3) - to return a new mapped array
+----------------------------------
+Note: 
+-----------
+1. If we have to perform some additional action on each of the element of an array we will use filer and map
+2. If we have to perform some additional action on each of the element of an array and return a single value we
+use reduce function.
+
+
+map(): Ex: - marks.map(score=>score*3) 
+--------------
+takes a callback function as an argument and applies it to each element of the array, returning a new array 
+with the results.
+
+filter(): Ex: - marks.filter(score=>score%2==0)
+-----------------
+takes a callback function as an argument and returns a new array containing only the elements of the original 
+array that satisfy the condition specified by the callback function.
+
+reduce(): Ex: - marks.reduce((sum, mark)=>sum+mark, 0)
+----------------
+takes a callback function and an initial value as arguments and applies the callback function to the elements 
+of the array, reducing them to a single value.
+
+-----------------------------------------------------------------------------------------------------------------
+
+To iterate over an array in javascript we can use the below:
+
+array.forEach(function (item, index) {
+  console.log(item, index);
+});
+
+OR
+array.forEach(function (item) {
+  console.log(item);
+});
+
+OR
+array.forEach(item => console.log(item));
+
+OR
+
+var myStringArray = ["Hello","World"];
+var arrayLength = myStringArray.length;
+for (var i = 0; i < arrayLength; i++) {
+    console.log(myStringArray[i]);
+}
+
+---------------------------------------------------------------------------------------------------------------------
+var, let and const
+----------------------
+
+var scope is either functional or global level
+
+
+Ex: - function add(){
+
+	var greet = "Morning"
+
+	}
+We can not access this greet outside of the function.
+---------------------------------------------------------------------
+
+let scope is either global or block level
+
+Ex: - if(true){
+	let letting = "Good"
+	}
+
+the scope of letting variable is inside the block only, cannot be visible outside of the block
+
+
+let and var both can be reinitialised but let cannot redeclared again and var can be 
+-------------------------------------------------------------------------------------
+
+const scope is similar to let but it cannot be reinitalised or redeclared.
+
+-----------------------------------------------------------------------------------------------------------------------
+Cypress.Cookies.preserveOnce('session_id', 'remember_token') - To Preserve the cookie
+
+-----------------------------------------------------------------------------------------------------------------------
+Trigger function can be used to trigger any keyboard event on DOM element
+-----------------------------------------------------------------------------------------------------------------------
+Drag and Drop in Cypress
+----------------------------------
+Cypress doesn’t offer any drag and drop functionality, for this we need to rely on trigger function and call appropriate events.
+
+Example:
+
+cy.get('[data-cy=draggable]')
+
+  .trigger('mousedown', { which: 1, pageX: 600, pageY: 100 })
+
+  .trigger('mousemove', { which: 1, pageX: 600, pageY: 600 })
+
+  .trigger('mouseup')
+
+-----------------------------------------------------------------------------------------------------------------------
+
+How to handle window alert in cypress?
+------------------------------------------------------
+In order to handle the alert or browser pop ups we need to implement uncaught:exception in our code, 
+then it will automatically handles the alert. If it’s alert box, it internally handles and clicks on OK button always.
+
+Example:
+
+Cypress.on("uncaught:exception", (err, runnable) => {
+
+// returning false here prevents Cypress from
+
+// failing the test
+
+return false;
+
+});
+
+cy.visit("https://test.com/popups");
+
+cy.get('[name="alert"]').click(); //This will handle the pop up internally
+
+-------------------------------------------------------------------------------------------------------------------------
+
+What is cy.task() functions in Cypress?
+-----------------------------------------------------
+cy.task() is the powerful command in cypress which helps to create some set of actions outside the scope of cypress. 
+You can execute any node commands using the task. There are lot of things we can do with the cy.task() 
+below is just one example.
+
+Example:
+
+Problem: cy.log() doesn’t work if you are running cypress CLI, we can’t use console.log() 
+directly on our cypress framework to fix this issue we can take a help of task.
+
+Inside plugin/index.js you can write some code like below.
+
+on('task', {
+
+log (message) {
+
+console.log(message)
+
+return null
+
+}
+
+})
+
+And once you write the above code you can call this in your script like below.
+
+describe('Demo', () => {
+
+it('HTML DOM', () => {
+
+       cy.task('log', 'This will be output to the terminal');
+
+});
+
+});
+
+-------------------------------------------------------------------------------------------------------------------------

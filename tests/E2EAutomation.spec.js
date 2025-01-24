@@ -4,7 +4,7 @@ const {test, expect} = require('@playwright/test')
 const url = "https://rahulshettyacademy.com/client"
 const username = "test7lYM@gmail.com"
 const password = "Test@123"
-const productName = "LG Refrigerator"
+const productName = "Banarsi Saree"
 const country = ' Singapore'
 
 
@@ -15,6 +15,9 @@ test('End to end product order validation', async ({page})=>{
     await page.locator("#login").click()
     await expect(page.locator("[routerlink='/dashboard/']")).toBeVisible()
     const products= page.locator("div.card-body") // div.card-body b
+    const text= await page.locator("//div[@class='left mt-1']/p").textContent()
+    console.log(text);
+    await expect(page.locator("//div[@class='left mt-1']/p")).toHaveText("Automation Practice")
 
   //locator chaining
   //allTextContents() - Which return the text value of all the matching elements inside an array as string
@@ -58,15 +61,28 @@ test('End to end product order validation', async ({page})=>{
     }
   }
 
+  await expect(page.getByPlaceholder('Select Country')).toHaveValue(country.trim())
   await page.getByText('Place Order ').click()
   await expect(page.locator('.hero-primary')).toBeVisible()
   const orderID = await page.locator("td.em-spacer-1 label").last().textContent()
   console.log(orderID);
 
-  await page.locator("[routerlink='/dashboard/myorders']").click()
+  await page.locator("[routerlink='/dashboard/myorders']").first().click()
   await expect(page.locator(".container h1")).toBeVisible()
+  const rows = page.locator('tbody tr')
 
-  
+  const rowsCount = await rows.count()
+  let orderIDText
+  for(let i=0; i<rowsCount ; i++){
+    orderIDText = await rows.nth(i).locator('th').textContent()
 
+    if(orderID.includes(orderIDText)){
+    //  await rows.nth(i).getByText('View').first().click() // tbody tr[0] 'text=View'
+      await rows.nth(i).locator('td button').first().click() // tbody tr[0] td button
+
+      break;
+    }
+  }
+  await expect(page.locator('.col-text').first()).toHaveText(orderIDText)
 
 })

@@ -1,0 +1,54 @@
+4.0 Selenium
+--------------
+
+
+#1) Capture screenshot of specific web element:
+
+
+WebElement logo=driver.Findelement (By.xpath(“//div[@id=’divLogo’]//img”));
+File file=logo.getScreenshotAs(OutputType.FILE);
+File destFile =new File(“logo.png”);
+FileUtils.copyFile(file,destfile);
+
+
+#2) Open the new tab on the browser:
+
+
+driver.get(https://www.google.com/);
+driver.switchTo().newWindow(WindowType.TAB);
+driver.navigate().to(https://www.crmpro.com/);
+
+
+#3) Open a new window on the browser:
+
+
+driver.get(https://www.google.com/);
+driver.switchTo().newWindow(WindowType.WINDOW);
+driver.navigate().to(https://www.crmpro.com/);
+
+
+#4) Object Location:
+
+WebElement logo1=driver.Findelement(By.xpath(“//div[@id=’divLogo’]//img”));
+System.out.println(“Height:” +logo.getRect().getDimension().getHeight());
+System.out.println(“Height:” +logo.getRect().getDimension().getWidth());
+System.out.println(“X Location: “ +Logo.getRect().getX());
+System.out.println(“Y Location: “ +Logo.getRect().getY());
+
+
+#5) Relative Locators:
+
+
+There are five locators added in Selenium 4:
+
+below(): Web element located below for the specified element.
+toLeftOf() : Target web element which is present to the left of specified element.
+toRightOf(): Target web element which is presented to the right of a specified element.
+above(): Web element located above for the specified element.
+near() : Target web element which is away(approx. 50 pixels) from the specified element.
+Note: All the above relative locators method support “withTagName” method.
+
+
+
+
+
