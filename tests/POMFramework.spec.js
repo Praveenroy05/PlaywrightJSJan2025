@@ -22,3 +22,13 @@
 // BasePage - clickOnElement(), getTextFromElement(), waitForElementToBeVisible()
 
 
+// 1. Login page validation
+//   a. Valid login scenario - valid credentials
+//   b. Invalid login scenario - Email is incorrect
+// 2. Dashboard page validation
+    // Search a product and add to the cart
+
+    // Best practices - 
+// 
+
+

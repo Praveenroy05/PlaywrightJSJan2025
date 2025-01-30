@@ -2,7 +2,9 @@
 // To open the code generation tool - npx playwright codegen
 // npx playwright codegen "url"
 
-const {test, expect} = require('@playwright/test')
+const {test, expect} = require('@playwright/test');
+const { LoginPage } = require('../pages/LoginPage');
+
 
 test('test', async ({ page }) => {
   await page.goto('https://practicetestautomation.com/practice-test-login/');
@@ -31,3 +33,11 @@ test.only('Window handlings', async ({ page }) => {
   await expect(page.getByPlaceholder('Email id for Sign Up')).toBeVisible();
 });
 
+
+
+test.only("Login test", async ({page})=>{
+  const loginPage = new LoginPage(page);
+  await loginPage.launchURL("https://rahulshettyacademy.com/client")
+  await loginPage.username.fill("TEsting")
+  await loginPage.password.fill("Test@123")
+})
