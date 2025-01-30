@@ -1,14 +1,24 @@
-// Slider
-// Calendar
-// Tooltip
-// Hidden element validation
-// Hooks
+
 // Annontations 
-// POM
+// POM - Page Object Model
 // Tags the test 
-// Script fr command to run the test case using npm run  - package.json
+// Script for command to run the test case using npm run  - package.json
+// Allure report generation
 // GitHub 
 // Jenkins
-// Allure report generation
 
-// API 
+
+// Visual Testing - How do we take the screenshot of a page and of an element
+// Slider - 
+// Calendar - 
+// Tooltip - 
+
+// API  - 29/01
+
+//27/01:
+// Codegen Demo
+// Hidden element validation
+// Hooks
+// API - 28/01/2025
+
+
