@@ -1,4 +1,4 @@
-class LoginPage {
+class LoginPage{
 
     // locators & Methods related to login page functionality
     constructor(page){
