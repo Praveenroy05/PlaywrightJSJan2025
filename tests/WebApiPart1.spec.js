@@ -56,7 +56,7 @@ test.beforeAll('Get Token', async () => {
 })
 
 
-test('End to end product order validations', async ({ page }) => {
+test('@API End to end product order validations', async ({ page }) => {
     await page.addInitScript((value) => {
         window.localStorage.setItem('token', value)
     }, token)

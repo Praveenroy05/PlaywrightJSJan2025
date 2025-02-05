@@ -15,7 +15,7 @@ test('Single file upload', async function({page}){
 
 })
 
-test.only('Multiple file upload', async function({page}){
+test('Multiple file upload', async function({page}){
 
     await page.goto("https://davidwalsh.name/demo/multiple-file-upload.php")
     // setInputFiles()

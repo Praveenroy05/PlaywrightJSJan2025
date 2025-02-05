@@ -22,7 +22,7 @@ test('test', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Test login' })).toBeVisible();
 });
 
-test.only('Window handlings', async ({ page }) => {
+test('Window handlings', async ({ page }) => {
   await page.goto('https://demo.automationtesting.in/Windows.html');
   const page1Promise = page.waitForEvent('popup');
   await page.getByRole('button', { name: 'click' }).click();
@@ -35,7 +35,7 @@ test.only('Window handlings', async ({ page }) => {
 
 
 
-test.only("Login test", async ({page})=>{
+test("Login test", async ({page})=>{
   const loginPage = new LoginPage(page);
   await loginPage.launchURL("https://rahulshettyacademy.com/client")
   await loginPage.username.fill("TEsting")

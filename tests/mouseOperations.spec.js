@@ -71,7 +71,7 @@ test("Confirm validation", async ({page})=>{
  
 })
 
-test.only("Prompt validation", async ({page})=>{
+test("Prompt validation", async ({page})=>{
     await page.goto("https://demoqa.com/alerts")
 
     page.on('dialog', dialog => {

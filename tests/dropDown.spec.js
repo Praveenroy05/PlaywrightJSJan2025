@@ -42,7 +42,7 @@ test('drop dwon developed using select tag handling', async function({page}){
     await page.waitForTimeout(2000)
 })
 
-test.only('drop down developed using non-select tag handling', async function({page}){
+test('drop down developed using non-select tag handling', async function({page}){
     await page.goto("https://demoqa.com/select-menu")
 
     await page.locator(".css-1hwfws3").nth(1).click()

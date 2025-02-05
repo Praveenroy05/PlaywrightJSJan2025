@@ -1,7 +1,7 @@
 
-// Annontations 
-// POM - Page Object Model
-// Tags the test 
+// Annontations - 
+// POM - Page Object Model - 
+// Tags the test - 
 // Script for command to run the test case using npm run  - package.json
 // Allure report generation
 // GitHub 
